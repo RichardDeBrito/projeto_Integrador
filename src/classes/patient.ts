@@ -1,10 +1,10 @@
 export type typeSexo = 'M' | 'F';
 
-export interface patientI {
+export interface patient {
     name: string;
     datanasc: Date;
     cpf: string;
     sexo: typeSexo;
-    telefone: string
+    telefone: string;
 }
 
