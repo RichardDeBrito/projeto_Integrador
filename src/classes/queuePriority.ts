@@ -1,7 +1,7 @@
 export type typePriority = 0 | 1 | 2 | 3
 
-export class QueuePriority<T> {
-    private nextItem: T | undefined = undefined; 
+export abstract class QueuePriority<T> {
+    protected nextItem: T | undefined = undefined; 
     private readonly orangeQueue: T[] = [];
     private readonly yellowQueue: T[] = [];
     private readonly greenQueue: T[] = [];
@@ -13,11 +13,11 @@ export class QueuePriority<T> {
         this.blueQueue
     ];
 
-    enqueue(item: T, priority: typePriority): void {
+    protected enqueue(item: T, priority: typePriority): void {
         this.geralQueue[priority].push(item);
     }
 
-    dequeue() :void {
+    protected dequeue() :void {
         for(const queue of this.geralQueue) {
             let breakCondition = false;
             for (const item of queue){
@@ -30,10 +30,8 @@ export class QueuePriority<T> {
             if (breakCondition){
                 break;
             }
-        }
-    }
 
-    showQueue() :void {
-        console.log(this.geralQueue);
+            this.nextItem = undefined;
+        }
     }
 }
