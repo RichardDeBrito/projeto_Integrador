@@ -1,12 +1,14 @@
-export type typePriority = 0 | 1 | 2 | 3
+export type typePriority = 0 | 1 | 2 | 3 | 4
 
 export abstract class QueuePriority<T> {
-    protected nextItem: T | undefined = undefined; 
-    private readonly orangeQueue: T[] = [];
-    private readonly yellowQueue: T[] = [];
-    private readonly greenQueue: T[] = [];
-    private readonly blueQueue: T[] = [];
-    private readonly geralQueue = [
+    protected nextItem: T | undefined = undefined;
+    protected readonly immediateQueue: T[] = [];
+    protected readonly orangeQueue: T[] = [];
+    protected readonly yellowQueue: T[] = [];
+    protected readonly greenQueue: T[] = [];
+    protected readonly blueQueue: T[] = [];
+    protected readonly geralQueue = [
+        this.immediateQueue,
         this.orangeQueue, 
         this.yellowQueue, 
         this.greenQueue, 

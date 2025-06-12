@@ -16,3 +16,4 @@ const queueHospital = new QueuePriorityHospital();
 queueHospital.queueForTriage(screening01);
 console.log(queueHospital.callNext());
 console.log(queueHospital.callNext());
+
