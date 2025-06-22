@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Atendente</title>
+  <link rel="stylesheet" href="styles/stylesAtendente.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Atendente</h2>
+    <form id="form-atendente" action="/cadastrarAtendente" method="post">
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="text" name="matricula" placeholder="Matrícula" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="link">
+      Já tem cadastro? <a href="loginAtendente.html">Entrar</a>
+    </div>
+  </div>
+</body>
+</html>

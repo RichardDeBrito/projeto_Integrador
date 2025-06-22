@@ -1,6 +1,6 @@
-import { QueuePriority } from "./queuePriority";
-import { Patient } from "./patient";
-import { Screening } from "./screening";
+import { QueuePriority } from "./queuePriority.js";
+import { Patient } from "./patient.js";
+import { Screening } from "./screening.js";
 
 export class QueuePriorityHospital extends QueuePriority<Screening> {
     public callNext(): Patient | string {

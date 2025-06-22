@@ -1,14 +1,14 @@
-export type typeSexo = 'M' | 'F';
-
 export class Patient {
     constructor(
-        readonly name: string,
-        readonly datanasc: Date,
-        readonly cpf: string,
-        readonly sexo: typeSexo,
-        readonly telefone: string,
-        readonly susCard: string
-    ){}
+        public nome: string,
+        public datanasc: string,
+        public cpf: string,
+        public sexo: string,
+        public telefone: string,
+        public susCard: string
+    ) {}
+
+    toString(): string {
+        return `${this.nome}, ${this.cpf}, ${this.datanasc}`;
+    }
 }
-
-

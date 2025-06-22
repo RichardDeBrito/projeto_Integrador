@@ -1,6 +1,6 @@
-import { Patient } from "./patient";
-import { Nurse } from "./nurse";
-import { typePriority } from "./queuePriority";
+import { Patient } from "./patient.js";
+import { Nurse } from "./nurse.js";
+import { typePriority } from "./queuePriority.js";
 
 export class Screening {
     constructor(

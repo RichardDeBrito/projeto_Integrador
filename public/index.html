@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Saúde - Escolha seu Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .logo p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .option-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 220px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .option-card.atendente:hover {
+            border-color: #27ae60;
+        }
+        
+        .option-card.enfermeiro:hover {
+            border-color: #e67e22;
+        }
+        
+        .option-card.medico:hover {
+            border-color: #3498db;
+        }
+        
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .atendente .icon {
+            color: #27ae60;
+        }
+        
+        .enfermeiro .icon {
+            color: #e67e22;
+        }
+        
+        .medico .icon {
+            color: #3498db;
+        }
+        
+        .option-card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .option-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .option-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>Sistema de Saúde</h1>
+            <p>Selecione seu perfil para continuar</p>
+        </div>
+        
+        <div class="options">
+            <div class="option-card atendente" onclick="window.location.href='./loginAtendente.html'">
+                <div class="icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Atendente</h3>
+                <p>Acesso ao cadastro de pacientes e gestão de filas</p>
+            </div>
+            
+            <div class="option-card enfermeiro" onclick="window.location.href='loginEnfermeiro.html'">
+                <div class="icon">
+                    <i class="fas fa-user-nurse"></i>
+                </div>
+                <h3>Enfermeiro</h3>
+                <p>Acesso a prontuários e triagem de pacientes</p>
+            </div>
+            
+            <div class="option-card medico" onclick="window.location.href='login_medico.html'">
+                <div class="icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3>Médico</h3>
+                <p>Acesso completo a diagnósticos e tratamentos</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

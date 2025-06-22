@@ -1,23 +1,34 @@
 {
   "name": "projeto_integrador",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "clear && ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "ts-patch install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/typescript": "^0.4.29",
+    "esbuild": "^0.25.5",
     "ts-node": "^10.9.2",
+    "ts-patch": "^3.3.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@types/body-parser": "^1.19.6",
+    "@types/express": "^5.0.3",
     "@types/sqlite3": "^3.1.11",
+    "better-sqlite3": "^11.10.0",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "module-alias": "^2.2.3",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }
