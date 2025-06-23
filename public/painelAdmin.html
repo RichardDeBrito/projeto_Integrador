@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin</title>
+</head>
+<body>
+    <h1>Painel Administrativo</h1>
+    <nav>
+        <ul>
+            <li><a href="cadastroAtendente.html">Cadastrar Atendente</a></li>
+            <li><a href="cadastroEnfermeiro.html">Cadastrar Enfermeiro</a></li>
+            <li><a href="cadastroMedico.html">Cadastrar Médico</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Verifique se o admin está logado
+        if (!localStorage.getItem('adminToken')) {
+            window.location.href = 'loginAdmin.html';
+        }
+    </script>
+</body>
+</html>

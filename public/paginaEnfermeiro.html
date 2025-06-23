@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gerenciamento de Filas - Enfermeiro</title>
+    <title>Área do Enfermeiro</title>
     <style>
         :root {
             --primary-color: #ff7b00;
             --primary-light: #ff9e40;
             --primary-dark: #c54e00;
-            --text-color: #333;
-            --light-gray: #f5f5f5;
+            --secondary-color: #ffab40;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --light-color: #f5f5f5;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
             --white: #ffffff;
-            --red: #ff4444;
-            --orange: #ff8800;
-            --yellow: #ffbb33;
-            --green: #00c851;
-            --blue: #33b5e5;
-        }
-
-        .titulo {
-            color: white;
         }
 
         * {
@@ -31,64 +27,84 @@
         }
 
         body {
-            background-color: var(--light-gray);
-            color: var(--text-color);
+            background-color: var(--light-color);
+            color: var(--dark-color);
             line-height: 1.6;
         }
 
         header {
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 5px;
-            align-items: center;
+            padding: 1.5rem;
             text-align: center;
-            box-shadow: 0 2px 5px rgb(255, 255, 255);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            align-items: center;
-            text-align: center;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-info img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--warning-color));
         }
 
         .container {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
         .panel {
             background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
             margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .panel:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
         }
 
         h1 {
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0;
             font-size: 1.8rem;
+            font-weight: 600;
         }
 
         h2 {
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .search-bar {
@@ -101,7 +117,7 @@
             flex: 1;
             padding: 0.8rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 1rem;
         }
 
@@ -110,83 +126,42 @@
             color: white;
             border: none;
             padding: 0 1.5rem;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .search-bar button:hover {
             background-color: var(--primary-dark);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1.5rem;
-        }
-
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: var(--primary-light);
-            color: var(--white);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        .priority {
-            display: inline-block;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            color: white;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .priority-red {
-            background-color: var(--red);
-        }
-
-        .priority-orange {
-            background-color: var(--orange);
-        }
-
-        .priority-yellow {
-            background-color: var(--yellow);
-        }
-
-        .priority-green {
-            background-color: var(--green);
-        }
-
-        .priority-blue {
-            background-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 123, 0, 0.2);
         }
 
         .btn {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
         }
 
         .btn-primary {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--white);
         }
 
         .btn-primary:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 123, 0, 0.2);
         }
 
         .btn-outline {
@@ -198,6 +173,112 @@
         .btn-outline:hover {
             background-color: var(--primary-color);
             color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+        }
+
+        th {
+            padding: 1.25rem 1rem;
+            text-align: left;
+            font-weight: 500;
+            position: relative;
+        }
+
+        th:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 123, 0, 0.03);
+        }
+
+        .priority-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .priority-red {
+            background-color: rgba(239, 71, 111, 0.1);
+            color: var(--danger-color);
+        }
+
+        .priority-orange {
+            background-color: rgba(255, 145, 0, 0.1);
+            color: var(--warning-color);
+        }
+
+        .priority-yellow {
+            background-color: rgba(255, 209, 102, 0.2);
+            color: #c79e3b;
+        }
+
+        .priority-green {
+            background-color: rgba(6, 214, 160, 0.1);
+            color: var(--success-color);
+        }
+
+        .priority-blue {
+            background-color: rgba(51, 181, 229, 0.1);
+            color: #33b5e5;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-color);
+        }
+
+        .no-data i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .patient-name {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .patient-details {
+            font-size: 0.85rem;
+            color: var(--gray-color);
         }
 
         .modal {
@@ -216,11 +297,12 @@
         .modal-content {
             background-color: var(--white);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 90%;
             max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
 
         .modal-header {
@@ -233,7 +315,7 @@
         .close-btn {
             font-size: 1.5rem;
             cursor: pointer;
-            color: #777;
+            color: var(--gray-color);
         }
 
         .form-group {
@@ -244,6 +326,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark-color);
         }
 
         .form-group input, 
@@ -252,8 +335,16 @@
             width: 100%;
             padding: 0.8rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
         }
 
         .form-group textarea {
@@ -264,29 +355,19 @@
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
+            gap: 1rem;
             margin-top: 1.5rem;
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .dot-red { background-color: var(--red); }
-        .dot-orange { background-color: var(--orange); }
-        .dot-yellow { background-color: var(--yellow); }
-        .dot-green { background-color: var(--green); }
-        .dot-blue { background-color: var(--blue); }
-
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .panel {
+                padding: 1.5rem 1rem;
+            }
+            
             table {
                 display: block;
                 overflow-x: auto;
@@ -298,21 +379,40 @@
             
             .search-bar button {
                 padding: 0.8rem;
+                width: 100%;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="titulo">Área do Enfermeiro</h1>
+        <h1>Área do Enfermeiro</h1>
     </header>
 
     <div class="container">
         <div class="panel">
-            <h1>Painel do Enfermeiro</h1>
+            <div class="panel-header">
+                <h2>Painel do Enfermeiro</h2>
+                <button class="btn refresh-btn" id="refreshBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                    Atualizar
+                </button>
+            </div>
+            
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Pesquisar paciente...">
-                <button id="searchButton">Buscar</button>
+                <button class="btn btn-primary" id="searchButton">Buscar</button>
             </div>
             
             <h2>Pacientes na Fila</h2>
@@ -333,34 +433,26 @@
                     <!-- Os pacientes serão carregados aqui via JavaScript -->
                 </tbody>
             </table>
-            <!-- Adicione esta nova seção após a tabela de pacientes -->
-<h2>Triagens Realizadas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Paciente</th>
-            <th>Data/Hora</th>
-            <th>Sintomas</th>
-            <th>Pressão</th>
-            <th>Temperatura</th>
-            <th>Freq. Cardíaca</th>
-            <th>Prioridade</th>
-            <th>Enfermeiro</th>
-        </tr>
-    </thead>
-    <tbody id="triagens-lista">
-        <!-- As triagens serão carregadas aqui via JavaScript -->
-    </tbody>
-</table>
-
-<!-- Atualize o formulário de triagem no modal -->
-<div class="form-group">
-    <label for="enfermeiroId">Enfermeiro Responsável</label>
-    <select id="enfermeiroId" required>
-        <option value="">Selecione o enfermeiro</option>
-        <!-- Os enfermeiros serão carregados aqui via JavaScript -->
-    </select>
-</div>
+            
+            <h2>Triagens Realizadas</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Data/Hora</th>
+                        <th>Sintomas</th>
+                        <th>Pressão</th>
+                        <th>Temperatura</th>
+                        <th>Freq. Cardíaca</th>
+                        <th>Prioridade</th>
+                        <th>Enfermeiro</th>
+                    </tr>
+                </thead>
+                <tbody id="triagens-lista">
+                    <!-- As triagens serão carregadas aqui via JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -416,6 +508,14 @@
                     </select>
                 </div>
                 
+                <div class="form-group">
+                    <label for="enfermeiroId">Enfermeiro Responsável</label>
+                    <select id="enfermeiroId" required>
+                        <option value="">Selecione o enfermeiro</option>
+                        <!-- Os enfermeiros serão carregados aqui via JavaScript -->
+                    </select>
+                </div>
+                
                 <div class="form-actions">
                     <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Salvar Triagem</button>
@@ -425,128 +525,6 @@
     </div>
 
     <script>
-        async function carregarEnfermeiros() {
-    try {
-        const response = await fetch('/obterEnfermeiros');
-        const enfermeiros = await response.json();
-        
-        const select = document.getElementById('enfermeiroId');
-        select.innerHTML = '<option value="">Selecione o enfermeiro</option>';
-        
-        enfermeiros.forEach(enfermeiro => {
-            const option = document.createElement('option');
-            option.value = enfermeiro.id_enfermeiro;
-            option.textContent = enfermeiro.nome;
-            select.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Erro ao carregar enfermeiros:', error);
-    }
-}
-
-    async function carregarTriagens() {
-        try {
-            const response = await fetch('/obterTriagens');
-            const triagens = await response.json();
-            
-            const container = document.getElementById('triagens-lista');
-            container.innerHTML = '';
-            
-            if (triagens.length === 0) {
-                container.innerHTML = '<tr><td colspan="8" style="text-align: center;">Nenhuma triagem registrada ainda.</td></tr>';
-                return;
-            }
-            
-            triagens.forEach(triagem => {
-                const row = document.createElement('tr');
-                
-                // Formatar a data/hora
-                const dataHora = new Date(triagem.data_hora_triagem).toLocaleString('pt-BR');
-                
-                // Determinar a classe de prioridade
-                let prioridadeClass = '';
-                let prioridadeText = '';
-                
-                // Verificar se prioridade_id existe e não é null/undefined
-                if (triagem.prioridade_id !== null && triagem.prioridade_id !== undefined) {
-                    switch(triagem.prioridade_id.toString()) { // Converter para string para garantir
-                        case '1': prioridadeClass = 'priority-red'; prioridadeText = 'Vermelho'; break;
-                        case '2': prioridadeClass = 'priority-orange'; prioridadeText = 'Laranja'; break;
-                        case '3': prioridadeClass = 'priority-yellow'; prioridadeText = 'Amarelo'; break;
-                        case '4': prioridadeClass = 'priority-green'; prioridadeText = 'Verde'; break;
-                        case '5': prioridadeClass = 'priority-blue'; prioridadeText = 'Azul'; break;
-                        default: prioridadeClass = ''; prioridadeText = 'Não especificado';
-                    }
-                } else {
-                    prioridadeClass = '';
-                    prioridadeText = 'Não especificado';
-                }
-                
-                row.innerHTML = `
-                    <td>${triagem.paciente_nome}</td>
-                    <td>${dataHora}</td>
-                    <td>${triagem.sintomas}</td>
-                    <td>${triagem.pressao}</td>
-                    <td>${triagem.temperatura}</td>
-                    <td>${triagem.frequencia_cardiaca}</td>
-                    <td><span class="priority ${prioridadeClass}">${prioridadeText}</span></td>
-                    <td>${triagem.enfermeiro_nome || 'Não informado'}</td>
-                `;
-                
-                container.appendChild(row);
-            });
-        } catch (error) {
-            console.error('Erro ao carregar triagens:', error);
-            document.getElementById('triagens-lista').innerHTML = 
-                '<tr><td colspan="8" style="text-align: center;">Erro ao carregar triagens. Tente novamente.</td></tr>';
-        }
-    }
-
-// Atualize a função de envio do formulário de triagem
-document.getElementById('triagemForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const triagemData = {
-        pacienteId: document.getElementById('pacienteId').value,
-        pacienteNome: document.getElementById('pacienteNome').value,
-        dataHora: document.getElementById('dataHora').value,
-        sintomas: document.getElementById('sintomas').value,
-        pressao: document.getElementById('pressao').value,
-        temperatura: document.getElementById('temperatura').value,
-        frequenciaCardiaca: document.getElementById('frequenciaCardiaca').value,
-        prioridade: document.getElementById('prioridade').value,
-        enfermeiroId: document.getElementById('enfermeiroId').value
-    };
-    
-    try {
-        const response = await fetch('/salvarTriagem', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(triagemData)
-        });
-        
-        if (response.ok) {
-            alert('Triagem salva com sucesso!');
-            closeModal();
-            await carregarTriagens(); // Recarregar a lista de triagens após salvar
-        } else {
-            throw new Error('Erro ao salvar triagem');
-        }
-    } catch (error) {
-        console.error('Erro:', error);
-        alert('Erro ao salvar triagem. Tente novamente.');
-        }
-    });
-
-// Atualize o event listener DOMContentLoaded para carregar tudo
-    document.addEventListener('DOMContentLoaded', async ()  => {
-        await carregarPacientes();
-        await carregarEnfermeiros();
-            await carregarTriagens();
-    });
-
         // Variável global para armazenar os pacientes
         let pacientesData = [];
         
@@ -605,7 +583,7 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                 container.innerHTML = '';
                 
                 if (pacientesData.length === 0) {
-                    container.innerHTML = '<tr><td colspan="7" style="text-align: center;">Nenhum paciente cadastrado ainda.</td></tr>';
+                    container.innerHTML = '<tr><td colspan="7" class="no-data">Nenhum paciente cadastrado ainda.</td></tr>';
                     return;
                 }
                 
@@ -613,7 +591,11 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                     const row = document.createElement('tr');
                     
                     row.innerHTML = `
-                        <td>${paciente.nome}</td>
+                        <td>
+                            <div class="patient-info">
+                                <div class="patient-name">${paciente.nome}</div>
+                            </div>
+                        </td>
                         <td>${paciente.cpf}</td>
                         <td>${calcularIdade(paciente.datanasc)} anos</td>
                         <td>${formatarSexo(paciente.sexo)}</td>
@@ -631,7 +613,83 @@ document.getElementById('triagemForm').addEventListener('submit', async function
             } catch (error) {
                 console.error('Erro ao carregar pacientes:', error);
                 document.getElementById('pacientes-lista').innerHTML = 
-                    '<tr><td colspan="7" style="text-align: center;">Erro ao carregar a lista de pacientes. Tente novamente.</td></tr>';
+                    '<tr><td colspan="7" class="no-data">Erro ao carregar a lista de pacientes. Tente novamente.</td></tr>';
+            }
+        }
+
+        async function carregarEnfermeiros() {
+            try {
+                const response = await fetch('/obterEnfermeiros');
+                const enfermeiros = await response.json();
+                
+                const select = document.getElementById('enfermeiroId');
+                select.innerHTML = '<option value="">Selecione o enfermeiro</option>';
+                
+                enfermeiros.forEach(enfermeiro => {
+                    const option = document.createElement('option');
+                    option.value = enfermeiro.id_enfermeiro;
+                    option.textContent = enfermeiro.nome;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar enfermeiros:', error);
+            }
+        }
+
+        async function carregarTriagens() {
+            try {
+                const response = await fetch('/obterTriagens');
+                const triagens = await response.json();
+                
+                const container = document.getElementById('triagens-lista');
+                container.innerHTML = '';
+                
+                if (triagens.length === 0) {
+                    container.innerHTML = '<tr><td colspan="8" class="no-data">Nenhuma triagem registrada ainda.</td></tr>';
+                    return;
+                }
+                
+                triagens.forEach(triagem => {
+                    const row = document.createElement('tr');
+                    
+                    // Formatar a data/hora
+                    const dataHora = new Date(triagem.data_hora_triagem).toLocaleString('pt-BR');
+                    
+                    // Determinar a classe de prioridade
+                    let prioridadeClass = '';
+                    let prioridadeText = '';
+                    
+                    if (triagem.prioridade_id !== null && triagem.prioridade_id !== undefined) {
+                        switch(triagem.prioridade_id.toString()) {
+                            case '1': prioridadeClass = 'priority-red'; prioridadeText = 'Vermelho'; break;
+                            case '2': prioridadeClass = 'priority-orange'; prioridadeText = 'Laranja'; break;
+                            case '3': prioridadeClass = 'priority-yellow'; prioridadeText = 'Amarelo'; break;
+                            case '4': prioridadeClass = 'priority-green'; prioridadeText = 'Verde'; break;
+                            case '5': prioridadeClass = 'priority-blue'; prioridadeText = 'Azul'; break;
+                            default: prioridadeClass = ''; prioridadeText = 'Não especificado';
+                        }
+                    } else {
+                        prioridadeClass = '';
+                        prioridadeText = 'Não especificado';
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${triagem.paciente_nome}</td>
+                        <td>${dataHora}</td>
+                        <td>${triagem.sintomas}</td>
+                        <td>${triagem.pressao}</td>
+                        <td>${triagem.temperatura}</td>
+                        <td>${triagem.frequencia_cardiaca}</td>
+                        <td><span class="priority-tag ${prioridadeClass}">${prioridadeText}</span></td>
+                        <td>${triagem.enfermeiro_nome || 'Não informado'}</td>
+                    `;
+                    
+                    container.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar triagens:', error);
+                document.getElementById('triagens-lista').innerHTML = 
+                    '<tr><td colspan="8" class="no-data">Erro ao carregar triagens. Tente novamente.</td></tr>';
             }
         }
 
@@ -649,7 +707,7 @@ document.getElementById('triagemForm').addEventListener('submit', async function
             container.innerHTML = '';
             
             if (pacientesFiltrados.length === 0) {
-                container.innerHTML = '<tr><td colspan="7" style="text-align: center;">Nenhum paciente encontrado.</td></tr>';
+                container.innerHTML = '<tr><td colspan="7" class="no-data">Nenhum paciente encontrado.</td></tr>';
                 return;
             }
             
@@ -657,7 +715,11 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td>${paciente.nome}</td>
+                    <td>
+                        <div class="patient-info">
+                            <div class="patient-name">${paciente.nome}</div>
+                        </div>
+                    </td>
                     <td>${paciente.cpf}</td>
                     <td>${calcularIdade(paciente.datanasc)} anos</td>
                     <td>${formatarSexo(paciente.sexo)}</td>
@@ -686,7 +748,8 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                 pressao: document.getElementById('pressao').value,
                 temperatura: document.getElementById('temperatura').value,
                 frequenciaCardiaca: document.getElementById('frequenciaCardiaca').value,
-                prioridade: document.getElementById('prioridade').value
+                prioridade: document.getElementById('prioridade').value,
+                enfermeiroId: document.getElementById('enfermeiroId').value
             };
             
             try {
@@ -701,6 +764,7 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                 if (response.ok) {
                     alert('Triagem salva com sucesso!');
                     closeModal();
+                    await carregarTriagens();
                 } else {
                     throw new Error('Erro ao salvar triagem');
                 }
@@ -717,9 +781,17 @@ document.getElementById('triagemForm').addEventListener('submit', async function
                 pesquisarPacientes();
             }
         });
+        document.getElementById('refreshBtn').addEventListener('click', async () => {
+            await carregarPacientes();
+            await carregarTriagens();
+        });
 
-        // Carregar pacientes quando a página é aberta
-        document.addEventListener('DOMContentLoaded', carregarPacientes);
+        // Carregar dados quando a página é aberta
+        document.addEventListener('DOMContentLoaded', async () => {
+            await carregarPacientes();
+            await carregarEnfermeiros();
+            await carregarTriagens();
+        });
     </script>
 </body>
 </html>

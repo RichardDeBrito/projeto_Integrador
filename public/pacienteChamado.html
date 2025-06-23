@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paciente Chamado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .patient-name {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+        .info {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .doctor-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 1.1rem;
+            color: #34495e;
+        }
+
+        .time {
+            font-size: 1rem;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .patient-name {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Paciente Chamado para Atendimento</h1>
+        <div class="patient-name" id="patientName"></div>
+        <div class="info">Dirija-se à sala de atendimento médico</div>
+        <div class="time" id="callTime"></div>
+    </div>
+
+    <script>
+        // Obter parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pacienteNome = urlParams.get('nome');
+        const medicoId = urlParams.get('medico');
+        
+        // Exibir informações
+        document.getElementById('patientName').textContent = pacienteNome || 'Paciente';
+        
+        // Aqui você poderia buscar o nome do médico pelo ID
+        // Por enquanto está fixo como "Dr. Silva"
+        
+        // Mostrar hora atual
+        const agora = new Date();
+        document.getElementById('callTime').textContent = `Chamado em: ${agora.toLocaleString('pt-BR')}`;
+        
+        // Opcional: atualizar a cada minuto para mostrar há quanto tempo foi chamado
+        setInterval(() => {
+            const diferenca = Math.floor((new Date() - agora) / 1000); // segundos
+            const minutos = Math.floor(diferenca / 60);
+            const segundos = diferenca % 60;
+            
+            document.getElementById('callTime').textContent = 
+                `Chamado há ${minutos > 0 ? minutos + ' minuto(s) e ' : ''}${segundos} segundo(s)`;
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Medico</title>
+  <link rel="stylesheet" href="styles/stylesMedico.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Medico</h2>
+    <form id="form-medico" action="/cadastrarMedico" method="post">
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="text" name="crm" placeholder="CRM" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="link">
+      Já tem cadastro? <a href="loginMedico.html">Entrar</a>
+    </div>
+  </div>
+</body>
+</html>
